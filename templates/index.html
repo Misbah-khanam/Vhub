@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}myChatApp{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="back-container">
+    <nav>
+        <div class="navbar">
+            <h3>FriendsAdda</h3>
+        </div>
+    </nav>
+    <div class="front-container1">
+        <div class="row chat-top2">
+            <div class="col-sm-4 " >
+                <img src="{% static 'assets/dp.png' %}" alt="" class="profile-image rounded-circle">
+                <span class="ml-2">{{request.user.username}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 contacts " >
+                <div class="contact-table-scroll">
+                    <table class="table table-hover">
+                        <tbody>
+                            {% for user in users %}
+                            <tr style="background-color: #eaf0fa">
+                                <td style="width: 10%;"><img src="{% static 'assets/dp.png' %}" alt="" class="profile-image rounded-circle">
+                                </td>
+                                <td><a href="{% url 'chat' username=user.username %}" style="color: black;">{{user.username}}</a></td>
+                            </tr>
+                            {% endfor %}
+
+                            <!-- end -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
